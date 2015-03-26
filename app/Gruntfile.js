@@ -67,6 +67,27 @@ module.exports = function(grunt) {
                     livereload: true
                 }
             }
+        },
+        compress: {
+            main: {
+                options: {
+                    mode: 'gzip',
+                    level: 9
+                },
+                expand: true,
+                cwd: 'static/',
+                dest: 'static/',
+                src: [
+                  '**/*.css',
+                  '**/*.js',
+                  '**/*.eot',
+                  '**/*.svg',
+                  '**/*.ttf',
+                ],
+                ext: function(file_ext) {
+                    return file_ext + '.gz';
+                }
+            }
         }
     });
 
@@ -74,8 +95,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-css');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     grunt.registerTask('default', ['less', 'watch']);
     grunt.registerTask('lintify', ['jshint', 'csslint']);
-    grunt.registerTask('prep_prod', ['less']);
+    grunt.registerTask('prep_prod', ['less', 'compress']);
 };

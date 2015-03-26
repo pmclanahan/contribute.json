@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+pushd app > /dev/null
+
+node_modules/.bin/grunt prep_prod
+
+popd > /dev/null

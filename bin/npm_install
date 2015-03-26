@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+pushd app > /dev/null
+
+npm install
+
+popd > /dev/null

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Extra steps for Heroku deployment
+
+set -eo pipefail
+
+# The post_compile hook is run by heroku-buildpack-python
+
+echo "-----> I'm post-compile hook"
+
+echo "-----> Running install_nodejs"
+bin/install_nodejs
+
+echo "-----> Running npm_install"
+bin/npm_install
+
+echo "-----> Running grunt_prep_prod"
+bin/grunt_prep_prod
+
+echo "-----> Post-compile done"
